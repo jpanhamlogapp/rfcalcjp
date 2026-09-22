@@ -32,6 +32,15 @@
   .contact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:1.2em 0}
   footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
   code{background:var(--card);padding:.1em .35em;border-radius:5px;font-size:.9em}
+
+  /* screenshots */
+  .shot{margin:.9em 0 .2em;text-align:center}
+  .shot img{width:100%;max-width:268px;border:1px solid var(--line);border-radius:26px;
+            box-shadow:0 8px 22px rgba(18,28,48,.10);background:#fff}
+  .shot figcaption{color:var(--muted);font-size:.8rem;margin-top:.5em;line-height:1.4}
+  .shots{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin:.6em 0}
+  .shots .shot{flex:1 1 230px;max-width:268px;margin:0}
+  .hero-shot{margin:1.1em auto 0;max-width:290px}
 </style>
 </head>
 <body>
@@ -51,6 +60,11 @@
   <p>本アプリの中核は、<strong>電力の絶対値（W / mW / dBm など）に、利得・損失（dB）を続けて加減算</strong>できることです。たとえば無線機の出力からケーブル損失やアンプ利得を順に足し引きして、最終出力を求められます。</p>
   <p>例：<code>1 W − 3.8 dB</code> → 26.2 dBm ／ 0.4169 W ／ 416.9 mW</p>
 
+  <figure class="shot hero-shot">
+    <img src="images/hero.png" alt="絶対値と dB を混ぜた計算例（1 W − 3.8 dB → 26.2 dBm）">
+    <figcaption>絶対値（W / dBm）と相対値（dB）を1行で計算</figcaption>
+  </figure>
+
   <h2>基本的な使い方</h2>
   <ol>
     <li>下部のタブから計算の種類（Power / RF Chain / Voltage / 単位変換 / dB / VSWR）を選びます。</li>
@@ -63,26 +77,32 @@
 
   <details><summary>Power / dBm 計算</summary>
     <p>W / mW / µW / nW / dBm / dBW を相互に変換します。1つの値を入力すると、対応する各単位を一度に表示します（例：1 W = 1000 mW = 30 dBm = 0 dBW）。電力単位の計算にインピーダンスは不要です。</p>
+  <figure class="shot"><img src="images/power.png" alt="Power / dBm 計算画面"><figcaption>1 W = 1000 mW = 30 dBm = 0 dBW</figcaption></figure>
   </details>
 
   <details><summary>RF Chain（RFチェーン計算）</summary>
     <p>最初に電力の絶対値を入力し、そのあとに各段の利得（+dB）・損失（−dB）を順に足していきます。無線機出力 → ケーブル損失 → コネクタ損失 → アンプ利得 → 最終出力、のように段ごとの値を確認できます。各段には任意の名前を付けられます。</p>
+  <figure class="shot"><img src="images/chain.png" alt="RF Chain 計算画面"><figcaption>無線機 5 W → ケーブル −2.5 dB → アンプ +10 dB → 44.49 dBm / 28.12 W</figcaption></figure>
   </details>
 
   <details><summary>Voltage（電圧）計算</summary>
     <p>V / mV / µV / nV と dBV / dBmV / dBµV を変換します。電圧から電力・dBm へ変換するときは<strong>インピーダンス</strong>が必要です（既定 50 Ω、75 / 600 Ω・任意値も選択可）。電圧値は RMS を基準とし、Peak / Peak-to-Peak を選ぶと内部で RMS に換算して計算します。現在の基準は画面に表示されます。</p>
+  <figure class="shot"><img src="images/voltage.png" alt="Voltage 電圧計算画面"><figcaption>3 V @ 50 Ω → 22.55 dBm / 0.18 W</figcaption></figure>
   </details>
 
   <details><summary>Unit Converter（単位変換）</summary>
     <p>電力・電圧・抵抗（インピーダンス）の単位をまとめて相互変換します。結果は可能な限り複数単位を同時に表示します。</p>
+  <div class="shots"><figure class="shot"><img src="images/unit1.png" alt="単位変換（電力を入力）"><figcaption>電力を入力</figcaption></figure><figure class="shot"><img src="images/unit2.png" alt="単位変換（電圧を入力）"><figcaption>電圧を入力</figcaption></figure></div>
   </details>
 
   <details><summary>dB Converter（dB 変換）</summary>
     <p>dB と電力比・電圧比を相互変換します（例：+3 dB → 電力比 ≈1.9953 / 電圧比 ≈1.4125）。電力比は 10<sup>(dB/10)</sup>、電圧比は 10<sup>(dB/20)</sup> で計算します。</p>
+  <figure class="shot"><img src="images/db.png" alt="dB 変換画面"><figcaption>+3 dB → 電力比 ≈1.9953 / 電圧比 ≈1.4125</figcaption></figure>
   </details>
 
   <details><summary>VSWR 計算</summary>
     <p>VSWR・反射係数 |Γ|・リターンロス・反射電力(%)・ミスマッチロスを相互に変換します（例：VSWR 2.0 → 反射電力 ≈11.11% / リターンロス ≈9.542 dB / ミスマッチロス ≈0.512 dB）。VSWR = 1.0 のときリターンロスは ∞ と表示されます。</p>
+  <figure class="shot"><img src="images/vswr.png" alt="VSWR 計算画面"><figcaption>VSWR 2.0 → 反射 ≈11.11% / RL ≈9.542 dB</figcaption></figure>
   </details>
 
   <h2>よくある質問</h2>
@@ -105,6 +125,7 @@
 
   <details><summary>表示の桁数を変えたい</summary>
     <p>設定で表示桁数（Auto / 有効数字）を変更できます。値の大きさに応じて W / mW / µW などの単位が自動で選ばれます。</p>
+  <figure class="shot"><img src="images/settings.png" alt="設定画面"><figcaption>インピーダンス・表示桁数・テーマを設定</figcaption></figure>
   </details>
 
   <details><summary>ネットワークやアカウントは必要ですか？</summary>
