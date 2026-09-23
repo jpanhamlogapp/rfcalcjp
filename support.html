@@ -147,6 +147,11 @@
   <p>The core of the App is applying gains and losses (dB) to an absolute power value (W / mW / dBm …) in sequence. For example, start from a transmitter’s output and add cable loss and amplifier gain to find the final output.</p>
   <p>Example: <code>1 W − 3.8 dB</code> → 26.2 dBm / 0.4169 W / 416.9 mW</p>
 
+  <figure class="shot hero-shot">
+    <img src="images/English_hero.png" alt="Mixing absolute values and dB (1 W − 3.8 dB → 26.2 dBm)">
+    <figcaption>Mix absolute (W / dBm) and relative (dB) values in one line</figcaption>
+  </figure>
+
   <h2>Getting Started</h2>
   <ol>
     <li>Pick a calculation type from the tabs (Power / RF Chain / Voltage / Unit / dB / VSWR).</li>
@@ -159,26 +164,32 @@
 
   <details><summary>Power / dBm</summary>
     <p>Converts among W / mW / µW / nW / dBm / dBW. Enter one value to see the others at once (e.g., 1 W = 1000 mW = 30 dBm = 0 dBW). Power-unit calculations need no impedance.</p>
+  <figure class="shot"><img src="images/English_power.png" alt="Power / dBm screen"><figcaption>1 W = 1000 mW = 30 dBm = 0 dBW</figcaption></figure>
   </details>
 
   <details><summary>RF Chain</summary>
     <p>Start with an absolute power value, then add each stage’s gain (+dB) or loss (−dB) in order: TX output → cable loss → connector loss → amplifier gain → final output. You can see each stage’s value and name each stage.</p>
+  <figure class="shot"><img src="images/English_chain.png" alt="RF Chain screen"><figcaption>TX 5 W → cable −2.5 dB → amp +10 dB → 44.49 dBm / 28.12 W</figcaption></figure>
   </details>
 
   <details><summary>Voltage</summary>
     <p>Converts among V / mV / µV / nV and dBV / dBmV / dBµV. Converting voltage to power/dBm requires an <strong>impedance</strong> (default 50 Ω; 75 / 600 Ω or a custom value are selectable). Voltage is referenced to RMS; choosing Peak / Peak-to-Peak converts to RMS internally. The current reference is shown on screen.</p>
+  <figure class="shot"><img src="images/English_voltage.png" alt="Voltage screen"><figcaption>3 V @ 50 Ω → 22.55 dBm / 0.18 W</figcaption></figure>
   </details>
 
   <details><summary>Unit Converter</summary>
     <p>Converts power, voltage, and resistance (impedance) units together, showing multiple units at once where possible.</p>
+  <div class="shots"><figure class="shot"><img src="images/English_Unit_01.png" alt="Unit converter (power input)"><figcaption>Power input</figcaption></figure><figure class="shot"><img src="images/English_Unit_02.png" alt="Unit converter (voltage input)"><figcaption>Voltage input</figcaption></figure></div>
   </details>
 
   <details><summary>dB Converter</summary>
     <p>Converts between dB and power/voltage ratios (e.g., +3 dB → power ratio ≈1.9953 / voltage ratio ≈1.4125). Power ratio = 10<sup>(dB/10)</sup>, voltage ratio = 10<sup>(dB/20)</sup>.</p>
+  <figure class="shot"><img src="images/English_dB.png" alt="dB Converter screen"><figcaption>+3 dB → power ratio ≈1.9953 / voltage ratio ≈1.4125</figcaption></figure>
   </details>
 
   <details><summary>VSWR</summary>
     <p>Converts among VSWR, reflection coefficient |Γ|, return loss, reflected power (%), and mismatch loss (e.g., VSWR 2.0 → reflected power ≈11.11% / return loss ≈9.542 dB / mismatch loss ≈0.512 dB). At VSWR = 1.0, return loss is shown as ∞.</p>
+  <figure class="shot"><img src="images/English_vswr.png" alt="VSWR screen"><figcaption>VSWR 2.0 → reflected ≈11.11% / RL ≈9.542 dB</figcaption></figure>
   </details>
 
   <h2>FAQ</h2>
@@ -201,6 +212,7 @@
 
   <details><summary>Changing the number of digits</summary>
     <p>Set the display digits (Auto / significant figures) in Settings. Units such as W / mW / µW are chosen automatically based on magnitude.</p>
+  <figure class="shot"><img src="images/English_settings.png" alt="Settings screen"><figcaption>Set impedance, display digits, and theme</figcaption></figure>
   </details>
 
   <details><summary>Do I need a network or an account?</summary>
