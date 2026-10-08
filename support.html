@@ -67,7 +67,7 @@
 
   <h2>基本的な使い方</h2>
   <ol>
-    <li>下部のタブから計算の種類（Power / RF Chain / Voltage / 単位変換 / dB / VSWR）を選びます。</li>
+    <li>下部のタブから計算の種類（Power / RF Chain / Voltage / 単位変換 / dB / VSWR / 効率）を選びます。</li>
     <li>数値を入力し、単位ボタン（W / mW / dBm など）で単位を指定します。</li>
     <li>必要に応じて <code>+</code> <code>−</code> と <code>dB</code> を使って利得・損失を続けて入力します。</li>
     <li>結果は関連する複数の単位で同時に表示されます。表示桁数は設定で変更できます。</li>
@@ -78,7 +78,9 @@
   <details><summary>Power / dBm 計算</summary>
     <p>W / mW / µW / nW / dBm / dBW を相互に変換します。1つの値を入力すると、対応する各単位を一度に表示します（例：1 W = 1000 mW = 30 dBm = 0 dBW）。電力単位の計算にインピーダンスは不要です。</p>
   <figure class="shot"><img src="images/power.png" alt="Power / dBm 計算画面"><figcaption>1 W = 1000 mW = 30 dBm = 0 dBW</figcaption></figure>
-  </details>
+    <p><b>v1.1 の追加：</b>dB から先に入力する式（例：−50 dB + 23 dBm）にも対応しました。W / mW / µW は値に合わせて読みやすい単位で表示します。「ATT補正」をオンにして減衰器の減衰量を入力・固定すると、測定値に減衰量を足した補正値（例：測定 −27 dBm、ATT 50 dB → 23 dBm）を表示します。画面右上の「電力効率」ボタンから電力効率計算を開けます。</p>
+  <figure class="shot"><img src="images/power_db_first.png" alt="dB を含む Power 計算画面"><figcaption>23 dBm + (−50 dB) → −27 dBm / 1.99526 µW / −57 dBW</figcaption></figure>
+</details>
 
   <details><summary>RF Chain（RFチェーン計算）</summary>
     <p>最初に電力の絶対値を入力し、そのあとに各段の利得（+dB）・損失（−dB）を順に足していきます。無線機出力 → ケーブル損失 → コネクタ損失 → アンプ利得 → 最終出力、のように段ごとの値を確認できます。各段には任意の名前を付けられます。</p>
@@ -103,6 +105,26 @@
   <details><summary>VSWR 計算</summary>
     <p>VSWR・反射係数 |Γ|・リターンロス・反射電力(%)・ミスマッチロスを相互に変換します（例：VSWR 2.0 → 反射電力 ≈11.11% / リターンロス ≈9.542 dB / ミスマッチロス ≈0.512 dB）。VSWR = 1.0 のときリターンロスは ∞ と表示されます。</p>
   <figure class="shot"><img src="images/vswr.png" alt="VSWR 計算画面"><figcaption>VSWR 2.0 → 反射 ≈11.11% / RL ≈9.542 dB</figcaption></figure>
+  </details>
+
+  <details><summary>電力効率（v1.1 新機能）</summary>
+    <p>「計算」タブの「効率」を選ぶか、Power 画面の「電力効率」ボタンで開きます。上部の切り替えで、求めたい値を選びます。</p>
+    <ul>
+      <li><b>効率：</b>DC電圧・DC電流・RF出力から効率 η = RF出力 ÷（電圧 × 電流）× 100 を計算。DC入力電力や損失（差分）、dBm 表示も同時に出ます。</li>
+      <li><b>必要電流：</b>DC電圧・RF出力・効率から、必要な DC 電流を逆算します。電源選びの目安に。</li>
+      <li><b>RF出力：</b>DC電圧・DC電流・効率から、期待できる RF 出力を求めます。</li>
+    </ul>
+    <p>入力欄をタップして選び、キーパッドで数値を入力します。効率は 0 より大きく 100% 以下で入力してください。結果は「履歴に保存」で残せます。</p>
+  <div class="shots"><figure class="shot"><img src="images/efficiency1.png" alt="電力効率（効率）"><figcaption>13.8 V × 20 A、RF 100 W → 36.23 %</figcaption></figure><figure class="shot"><img src="images/efficiency2.png" alt="電力効率（必要電流）"><figcaption>13.8 V、RF 100 W、効率 35 % → 20.70 A</figcaption></figure><figure class="shot"><img src="images/efficiency3.png" alt="電力効率（RF出力）"><figcaption>13.8 V × 20 A、効率 50 % → 138 W</figcaption></figure></div>
+  </details>
+
+  <details><summary>操作のヒント（v1.1）</summary>
+    <ul>
+      <li>各計算画面の入力内容は、ほかの画面に切り替えても保持されます。</li>
+      <li>「キーパッドを閉じる／表示」でキーパッドを格納でき、結果を広く表示できます。</li>
+      <li>⌫ は短押しで1文字削除、長押しで全クリアです。Voltage では C の位置に ÷ があります。</li>
+      <li>文字サイズを大きくした設定（Dynamic Type）でも、レイアウトが自動で切り替わります。収まらない場合は画面を縦にスクロールしてください。</li>
+    </ul>
   </details>
 
   <h2>よくある質問</h2>
@@ -154,7 +176,7 @@
 
   <h2>Getting Started</h2>
   <ol>
-    <li>Pick a calculation type from the tabs (Power / RF Chain / Voltage / Unit / dB / VSWR).</li>
+    <li>Pick a calculation type from the tabs (Power / RF Chain / Voltage / Unit / dB / VSWR / Efficiency).</li>
     <li>Enter a value and choose its unit (W / mW / dBm …).</li>
     <li>Use <code>+</code> <code>−</code> and <code>dB</code> to add gains and losses in sequence.</li>
     <li>Results are shown in several related units at once; set the number of digits in Settings.</li>
@@ -165,7 +187,9 @@
   <details><summary>Power / dBm</summary>
     <p>Converts among W / mW / µW / nW / dBm / dBW. Enter one value to see the others at once (e.g., 1 W = 1000 mW = 30 dBm = 0 dBW). Power-unit calculations need no impedance.</p>
   <figure class="shot"><img src="images/English_power.png" alt="Power / dBm screen"><figcaption>1 W = 1000 mW = 30 dBm = 0 dBW</figcaption></figure>
-  </details>
+    <p><b>New in v1.1:</b> expressions can start with dB (e.g., −50 dB + 23 dBm). W / mW / µW is chosen automatically for readability. Turn on “ATT補正” (ATT correction) and lock the attenuation to show the corrected value (e.g., measured −27 dBm with 50 dB ATT → 23 dBm). The Power Efficiency button opens the efficiency calculator.</p>
+  <figure class="shot"><img src="images/power_db_first.png" alt="Power screen with dB"><figcaption>23 dBm + (−50 dB) → −27 dBm / 1.99526 µW / −57 dBW (Japanese UI)</figcaption></figure>
+</details>
 
   <details><summary>RF Chain</summary>
     <p>Start with an absolute power value, then add each stage’s gain (+dB) or loss (−dB) in order: TX output → cable loss → connector loss → amplifier gain → final output. You can see each stage’s value and name each stage.</p>
@@ -190,6 +214,26 @@
   <details><summary>VSWR</summary>
     <p>Converts among VSWR, reflection coefficient |Γ|, return loss, reflected power (%), and mismatch loss (e.g., VSWR 2.0 → reflected power ≈11.11% / return loss ≈9.542 dB / mismatch loss ≈0.512 dB). At VSWR = 1.0, return loss is shown as ∞.</p>
   <figure class="shot"><img src="images/English_vswr.png" alt="VSWR screen"><figcaption>VSWR 2.0 → reflected ≈11.11% / RL ≈9.542 dB</figcaption></figure>
+  </details>
+
+  <details><summary>Power Efficiency (new in v1.1)</summary>
+    <p>Choose “効率” (Efficiency) in the Calc tab, or tap the Power Efficiency button on the Power screen. Pick what to solve for at the top:</p>
+    <ul>
+      <li><b>Efficiency:</b> η = RF output ÷ (DC voltage × DC current) × 100, with DC input power, loss and dBm values.</li>
+      <li><b>Required current:</b> the DC current needed for a given voltage, RF output and efficiency.</li>
+      <li><b>RF output:</b> the RF output expected from a given voltage, current and efficiency.</li>
+    </ul>
+    <p>Tap a field and enter the value on the keypad. Efficiency must be greater than 0 and at most 100%. Save results with “履歴に保存” (Save to History).</p>
+  <div class="shots"><figure class="shot"><img src="images/efficiency1.png" alt="Efficiency"><figcaption>13.8 V × 20 A, RF 100 W → 36.23 %</figcaption></figure><figure class="shot"><img src="images/efficiency2.png" alt="Required current"><figcaption>13.8 V, RF 100 W, 35 % → 20.70 A</figcaption></figure><figure class="shot"><img src="images/efficiency3.png" alt="RF output"><figcaption>13.8 V × 20 A, 50 % → 138 W</figcaption></figure></div>
+  </details>
+
+  <details><summary>Tips (v1.1)</summary>
+    <ul>
+      <li>Each calculator keeps its input when you switch screens.</li>
+      <li>Collapse the keypad to see more of the result.</li>
+      <li>⌫ deletes one character; long-press clears everything. Voltage has ÷ in place of C.</li>
+      <li>With larger text sizes (Dynamic Type) the layout adapts; scroll vertically if it doesn’t fit.</li>
+    </ul>
   </details>
 
   <h2>FAQ</h2>
