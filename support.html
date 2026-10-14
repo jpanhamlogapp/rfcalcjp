@@ -68,7 +68,7 @@
   <h2>基本的な使い方</h2>
   <ol>
     <li>下部のタブから計算の種類（Power / RF Chain / Voltage / 単位変換 / dB / VSWR / 効率）を選びます。</li>
-    <li>数値を入力し、単位ボタン（W / mW / dBm など）で単位を指定します。</li>
+    <li>数値を入力し、テンキーのすぐ下の単位キー（W / mW / dBW / dBm）で絶対電力として、または dB キーで利得・損失として確定します。</li>
     <li>必要に応じて <code>+</code> <code>−</code> と <code>dB</code> を使って利得・損失を続けて入力します。</li>
     <li>結果は関連する複数の単位で同時に表示されます。表示桁数は設定で変更できます。</li>
   </ol>
@@ -78,8 +78,9 @@
   <details><summary>Power / dBm 計算</summary>
     <p>W / mW / µW / nW / dBm / dBW を相互に変換します。1つの値を入力すると、対応する各単位を一度に表示します（例：1 W = 1000 mW = 30 dBm = 0 dBW）。電力単位の計算にインピーダンスは不要です。</p>
   <figure class="shot"><img src="images/power.png" alt="Power / dBm 計算画面"><figcaption>1 W = 1000 mW = 30 dBm = 0 dBW</figcaption></figure>
+    <p><b>v1.1.1 の変更：</b>単位キー（W / mW / dBW / dBm / dB）をテンキーのすぐ下にまとめ、数値を打ったら手を離さずに単位を確定できるようにしました。テンキー右下の C で全クリアします（⌫ の長押しでも可）。計算できない式（例：60 dB − 23.4 dBm ＝ dB から絶対電力を引く式）では理由と入力例を表示し、入力中の値はそのまま残るので、演算子や順序を直してそのまま続けられます。結果が多いときは結果欄だけがスクロールし、テンキーは常に画面内に表示されます。</p>
     <p><b>v1.1 の追加：</b>dB から先に入力する式（例：−50 dB + 23 dBm）にも対応しました。W / mW / µW は値に合わせて読みやすい単位で表示します。「ATT補正」をオンにして減衰器の減衰量を入力・固定すると、測定値に減衰量を足した補正値（例：測定 −27 dBm、ATT 50 dB → 23 dBm）を表示します。画面右上の「電力効率」ボタンから電力効率計算を開けます。</p>
-  <figure class="shot"><img src="images/power_db_first.png" alt="dB を含む Power 計算画面"><figcaption>23 dBm + (−50 dB) → −27 dBm / 1.99526 µW / −57 dBW</figcaption></figure>
+  <div class="shots"><figure class="shot"><img src="images/power_v111.png" alt="Power 計算画面（単位キーはテンキー直下）"><figcaption>23 dBm + (−50 dB) → −27 dBm / 1.99526 µW / −57 dBW</figcaption></figure><figure class="shot"><img src="images/power_error_v111.png" alt="計算できない式のエラー表示"><figcaption>60 dB − 23.4 dBm は計算できません（理由と入力例を表示）</figcaption></figure></div>
 </details>
 
   <details><summary>RF Chain（RFチェーン計算）</summary>
@@ -123,6 +124,7 @@
       <li>各計算画面の入力内容は、ほかの画面に切り替えても保持されます。</li>
       <li>「キーパッドを閉じる／表示」でキーパッドを格納でき、結果を広く表示できます。</li>
       <li>⌫ は短押しで1文字削除、長押しで全クリアです。Voltage では C の位置に ÷ があります。</li>
+      <li>結果が多いときは結果欄だけがスクロールします。計算条件（単位・RMS/Peak/P-P など）を変えると、結果欄は自動で先頭に戻ります。</li>
       <li>文字サイズを大きくした設定（Dynamic Type）でも、レイアウトが自動で切り替わります。収まらない場合は画面を縦にスクロールしてください。</li>
     </ul>
   </details>
@@ -177,7 +179,7 @@
   <h2>Getting Started</h2>
   <ol>
     <li>Pick a calculation type from the tabs (Power / RF Chain / Voltage / Unit / dB / VSWR / Efficiency).</li>
-    <li>Enter a value and choose its unit (W / mW / dBm …).</li>
+    <li>Enter a value, then confirm it with a unit key right below the keypad (W / mW / dBW / dBm) as an absolute power, or with dB as a gain or loss.</li>
     <li>Use <code>+</code> <code>−</code> and <code>dB</code> to add gains and losses in sequence.</li>
     <li>Results are shown in several related units at once; set the number of digits in Settings.</li>
   </ol>
@@ -187,8 +189,9 @@
   <details><summary>Power / dBm</summary>
     <p>Converts among W / mW / µW / nW / dBm / dBW. Enter one value to see the others at once (e.g., 1 W = 1000 mW = 30 dBm = 0 dBW). Power-unit calculations need no impedance.</p>
   <figure class="shot"><img src="images/English_power.png" alt="Power / dBm screen"><figcaption>1 W = 1000 mW = 30 dBm = 0 dBW</figcaption></figure>
+    <p><b>Changed in v1.1.1:</b> the unit keys (W / mW / dBW / dBm / dB) now sit right below the keypad, so you can confirm a unit without leaving the keypad. The C key at the bottom right clears everything (long-press ⌫ also works). Expressions that can’t be calculated (e.g., 60 dB − 23.4 dBm, subtracting an absolute power from dB) show the reason and an example; your input stays so you can fix the operator or order and continue. When there are many results, only the result area scrolls and the keypad always stays on screen.</p>
     <p><b>New in v1.1:</b> expressions can start with dB (e.g., −50 dB + 23 dBm). W / mW / µW is chosen automatically for readability. Turn on “ATT補正” (ATT correction) and lock the attenuation to show the corrected value (e.g., measured −27 dBm with 50 dB ATT → 23 dBm). The Power Efficiency button opens the efficiency calculator.</p>
-  <figure class="shot"><img src="images/power_db_first.png" alt="Power screen with dB"><figcaption>23 dBm + (−50 dB) → −27 dBm / 1.99526 µW / −57 dBW (Japanese UI)</figcaption></figure>
+  <div class="shots"><figure class="shot"><img src="images/power_v111.png" alt="Power screen (unit keys below the keypad)"><figcaption>23 dBm + (−50 dB) → −27 dBm / 1.99526 µW / −57 dBW (Japanese UI)</figcaption></figure><figure class="shot"><img src="images/power_error_v111.png" alt="Error for an expression that can’t be calculated"><figcaption>60 dB − 23.4 dBm can’t be calculated (Japanese UI)</figcaption></figure></div>
 </details>
 
   <details><summary>RF Chain</summary>
@@ -232,6 +235,7 @@
       <li>Each calculator keeps its input when you switch screens.</li>
       <li>Collapse the keypad to see more of the result.</li>
       <li>⌫ deletes one character; long-press clears everything. Voltage has ÷ in place of C.</li>
+      <li>When there are many results, only the result area scrolls. Changing a setting (unit, RMS/Peak/P-P, …) scrolls the results back to the top.</li>
       <li>With larger text sizes (Dynamic Type) the layout adapts; scroll vertically if it doesn’t fit.</li>
     </ul>
   </details>
